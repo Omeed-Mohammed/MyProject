@@ -1,0 +1,134 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+class clsCalculator
+{
+     private :
+         int _Result = 0;
+         int _LastNumber = 0;
+         short _Op = 0;
+         int _PreviosResult = 0;
+
+     public:
+
+         void Add(int Num)
+         {
+             _PreviosResult = _Result;
+             _LastNumber = Num;
+             _Op = 1;
+             _Result += Num;
+         }
+
+         void Clear()
+         {
+             _PreviosResult = _Result;
+             _LastNumber = 0;
+             _Op = 5;
+             _Result = 0;
+         }
+
+         void Divide(int Num)
+         {
+             _PreviosResult = _Result;
+             _LastNumber = Num;
+             if (Num == 0)
+             {
+                 Num = 1;
+             }
+             
+             _Op = 2;
+             _Result = _Result / Num;
+         }
+
+         void MultiPly(int Num)
+         {
+             _PreviosResult = _Result;
+             _LastNumber = Num;
+             _Op = 3;
+             _Result = _Result * Num;
+         }
+
+         void Sub(int Num)
+         {
+             _PreviosResult = _Result;
+             _LastNumber = Num;
+             _Op = 4;
+             _Result -= Num;
+         }
+
+         void CancelLastOperation()
+         {
+             _Op = 6;
+             _LastNumber = 0;
+             _Result = _PreviosResult;
+         }
+
+         void PrintResult()
+         {
+             switch (_Op)
+             {
+             case 1 : 
+                 cout << "Result After Adding " << _LastNumber << " is : " << _Result << endl;
+                 break;
+             case 2:
+                 cout << "Result After Dividing " << _LastNumber << " is : " << _Result << endl;
+                 break;
+             case 3:
+                 cout << "Result After MultiPlying " << _LastNumber << " is : " << _Result << endl;
+                 break;
+             case 4:
+                 cout << "Result After Subtracting " << _LastNumber << " is : " << _Result << endl;
+                 break;
+             case 5:
+                 cout << "Result After Clear " << _LastNumber << " is : " << _Result << endl;
+                 break;
+             case 6:
+                 cout << "Cancel Last Operation " << _LastNumber << " is : " << _Result << endl;
+                 break;
+
+             }
+         }
+
+         
+
+};
+
+int main()
+{
+
+    clsCalculator Calculator1;
+
+    Calculator1.Add(10);
+    Calculator1.PrintResult();
+
+    Calculator1.Add(100);
+    Calculator1.PrintResult();
+
+    Calculator1.Sub(20);
+    Calculator1.PrintResult();
+
+    Calculator1.Divide(0);
+    Calculator1.PrintResult();
+
+    Calculator1.Divide(2);
+    Calculator1.PrintResult();
+
+    Calculator1.MultiPly(4);
+    Calculator1.PrintResult();
+
+    Calculator1.CancelLastOperation();
+    Calculator1.PrintResult();
+
+    Calculator1.MultiPly(3);
+    Calculator1.PrintResult();
+
+    Calculator1.Clear();
+    Calculator1.PrintResult();
+
+
+
+
+    system("pause>0");
+    return 0;
+}
